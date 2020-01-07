@@ -1,0 +1,100 @@
+image:
+  save:
+    path: E:/MediaManager/commodity
+    url: http://47.102.135.226/commodity/
+
+logging:
+  level:
+    com:
+      wishes:
+        market:
+          mapper: DEBUG
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+    useGeneratedKeys: true
+  mapper-locations: classpath:mapper/*.xml
+
+server:
+  port: 8090
+
+spring:
+  redis:
+    database: 0
+    host: 47.102.135.226
+    port: 6379
+    # 有密码填密码，没有密码不填
+    password:
+    # 连接超时时间（ms)
+    timeout: 1000ms
+    # 高版本springboot中使用jedis或者lettuce
+    jedis:
+      pool:
+        # 连接池最大连接数（负值表示无限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（负值无限制)
+        max-wait: 5000ms
+        # 最大空闲链接数
+        max-idle: 8
+        # 最小空闲链接数
+        min-idle: 0
+
+  application:
+    name: Market-Service
+  boot:
+    admin:
+      client:
+        url: http://47.102.135.226:8195
+        instance:
+          service-url: http://47.102.135.226:8090
+          prefer-ip: true
+
+  datasource:
+    druid:
+      primary:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: 123
+        url: 'jdbc:mysql://47.102.135.226:3306/market?characterEncoding=UTF-8&useSSL=true&serverTimezone=UTC&allowMultiQueries=true '
+        username: idea
+
+  devtools:
+    add-properties: true
+
+  http:
+    converters:
+      preferred-json-mapper: jackson
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    joda-date-time-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      indent_output: true
+      write-dates-as-timestamps: true
+    time-zone: GMT+8
+
+  thymeleaf:
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html
+
+swagger:
+  enable: true
+
+
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://47.102.135.226:8000/eureka/
